@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر العطور الفاخرة</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background: #f5f7fa; color: #333; line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    header { text-align: center; padding: 40px 0; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1523293182086-7651a899337f') center/cover; color: white; border-radius: 10px; margin-bottom: 30px; }
+    header h1 { font-size: 3rem; margin-bottom: 10px; }
+    header p { font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+    .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px; }
+    .product-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+    .product-card:hover { transform: translateY(-10px); }
+    .product-img { height: 200px; background: linear-gradient(45deg, #d4a5a5, #f2e7e7); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #8b5a5a; }
+    .product-info { padding: 20px; }
+    .product-info h3 { font-size: 1.4rem; margin-bottom: 10px; color: #2c3e50; }
+    .product-info p { color: #7f8c8d; margin-bottom: 15px; }
+    .price { font-size: 1.5rem; font-weight: bold; color: #e74c3c; margin-bottom: 15px; }
+    .btn { background: #3498db; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; font-size: 1rem; }
+    .btn:hover { background: #2980b9; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+    .modal-content { background: white; padding: 30px; border-radius: 10px; width: 90%; max-width: 500px; position: relative; }
+    .close { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
+    .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; }
+    .notification { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #27ae60; color: white; padding: 15px 25px; border-radius: 5px; display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>متجر العطور الفاخرة</h1>
+      <p>أجمل العطور العالمية للرجال والنساء في الجزائر</p>
+    </header>    <section class="products">
+      <div class="product-card">
+        <div class="product-img">🌹</div>
+        <div class="product-info">
+          <h3>عطر الورود الفاخر</h3>
+          <p>عطر نسائي مميز برائحة الورود الزكية</p>
+          <div class="price">4,500 دج</div>
+          <button class="btn order-btn" data-product="عطر الورود الفاخر" data-price="4500">اطلب الآن</button>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-img">🌲</div>
+        <div class="product-info">
+          <h3>عطر الخشب العتيق</h3>
+          <p>عطر رجالي بلمسة خشبية دافئة</p>
+          <div class="price">5,200 دج</div>
+          <button class="btn order-btn" data-product="عطر الخشب العتيق" data-price="5200">اطلب الآن</button>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-img">🌊</div>
+        <div class="product-info">
+          <h3>عطر المحيط الأزرق</h3>
+          <p>عطر منعش برائحة البحر والمحيط</p>
+          <div class="price">3,800 دج</div>
+          <button class="btn order-btn" data-product="عطر المحيط الأزرق" data-price="3800">اطلب الآن</button>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-img">🍊</div>
+        <div class="product-info">
+          <h3>عطر الحمضيات المنعش</h3>
+          <p>عطر صيفي برائحة الحمضيات المميزة</p>
+          <div class="price">3,200 دج</div>
+          <button class="btn order-btn" data-product="عطر الحمضيات المنعش" data-price="3200">اطلب الآن</button>
+        </div>
+      </div>
+    </section>    <section class="about" style="background: white; padding: 30px; border-radius: 10px; margin-bottom: 30px;">
+      <h2 style="text-align: center; margin-bottom: 20px;">لماذا تختار متجرنا؟</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 15px;">✨</div>
+          <h3>جودة عالمية</h3>
+          <p>نوفر أجود العطور من أشهر العلامات التجارية العالمية</p>
+        </div>
+        
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 15px;">🚚</div>
+          <h3>توصيل سريع</h3>
+          <p>نوفر خدمة التوصيل لجميع أنحاء الجزائر في أسرع وقت</p>
+        </div>
+        
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 15px;">💎</div>
+          <h3>تعبئة فاخرة</h3>
+          <p>جميع منتجاتنا تأتي بعبوات فاخرة ومثالية للهدايا</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="contact" style="background: #2c3e50; color: white; padding: 40px; border-radius: 10px; text-align: center;">
+      <h2>تواصل معنا</h2>
+      <p>نحن هنا لخدمتك! تواصل معنا لأي استفسار</p>
+      
+      <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-top: 20px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span>📱</span>
+          <span>+213 555 123 456</span>
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span>📧</span>
+          <span>info@perfumes-algeria.dz</span>
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span>📍</span>
+          <span>الجزائر العاصمة، الجزائر</span>
+        </div>
+      </div>
+    </section>
+    
+    <footer style="text-align: center; padding: 20px; margin-top: 30px; color: #7f8c8d;">
+      <p>© 2023 متجر العطور الفاخرة. جميع الحقوق محفوظة</p>
+    </footer>
+  </div>  <div id="orderModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>إتمام الطلب</h2>
+      
+      <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+        <h3>ملخص الطلب</h3>
+        <p id="selectedProduct">المنتج: -</p>
+        <p id="selectedPrice">السعر: -</p>
+      </div>
+      
+      <form id="orderForm" name="perfume-order" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="perfume-order">
+        <input type="hidden" name="product" id="formProduct">
+        <input type="hidden" name="price" id="formPrice">
+        
+        <div class="form-group">
+          <label for="fullName">الاسم الكامل</label>
+          <input type="text" id="fullName" name="fullName" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">رقم الهاتف</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="city">المدينة</label>
+          <select id="city" name="city" required>
+            <option value="">اختر المدينة</option>
+            <option value="الجزائر العاصمة">الجزائر العاصمة</option>
+            <option value="وهران">وهران</option>
+            <option value="قسنطينة">قسنطينة</option>
+            <option value="عنابة">عنابة</option>
+            <option value="بلدة">بلدة</option>
+            <option value="سطيف">سطيف</option>
+            <option value="باتنة">باتنة</option>
+            <option value="تيزي وزو">تيزي وزو</option>
+            <option value="المدية">المدية</option>
+            <option value="مستغانم">مستغانم</option>
+            <option value="أخرى">أخرى</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="town">البلدة/الحي</label>
+          <input type="text" id="town" name="town" placeholder="أدخل اسم البلدة أو الحي" required>
+        </div>
+        
+        <button type="submit" class="btn" style="background: #27ae60; width: 100%; padding: 12px; font-size: 1.1rem;">تأكيد الطلب</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="notification" class="notification">
+    تم إرسال طلبك بنجاح! سنتواصل معك قريباً.
+  </div>  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('orderModal');
+      const closeBtn = document.querySelector('.close');
+      const orderForm = document.getElementById('orderForm');
+      const notification = document.getElementById('notification');
+      const selectedProduct = document.getElementById('selectedProduct');
+      const selectedPrice = document.getElementById('selectedPrice');
+      const formProduct = document.getElementById('formProduct');
+      const formPrice = document.getElementById('formPrice');
+      
+      document.querySelectorAll('.order-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const productName = this.getAttribute('data-product');
+          const productPrice = this.getAttribute('data-price');
+          
+          selectedProduct.textContent = `المنتج: ${productName}`;
+          selectedPrice.textContent = `السعر: ${productPrice} دج`;
+          formProduct.value = productName;
+          formPrice.value = productPrice;
+          
+          modal.style.display = 'flex';
+        });
+      });
+      
+      closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+        orderForm.reset();
+      });
+      
+      window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+          orderForm.reset();
+        }
+      });
+      
+      orderForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        notification.style.display = 'block';
+        modal.style.display = 'none';
+        orderForm.reset();
+        
+        setTimeout(function() {
+          notification.style.display = 'none';
+        }, 5000);
+      });
+    });
+  </script>
+</body>
+</html>
